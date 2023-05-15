@@ -22,6 +22,7 @@ app.get('/getdata', function(req, res) {
 app.post('/senddata', function (req, res) {
   PlayerPosition = req.body.PlayerPosition
   Players = req.body.Players
+  res.send("Good")
 });
 
 app.listen(port, () => {
