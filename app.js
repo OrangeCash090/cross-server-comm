@@ -8,6 +8,8 @@ const path = require('path');
 app.use(bodyParser.json())
 
 var PlayerPosition = null
+var PlayerChat = null
+var OtherChat = null
 var Players = {}
 
 // Render Html File
@@ -16,12 +18,22 @@ app.get('/', function(req, res) {
 });
 
 app.get('/getdata', function(req, res) {
-  res.send({PlayerPosition: PlayerPosition, Players: Players})
+  res.send({PlayerPosition: PlayerPosition, Players: Players, PlayerChat: PlayerChat, OtherChat: OtherChat})
 });
 
 app.post('/senddata', function (req, res) {
-  PlayerPosition = req.body.PlayerPosition
-  Players = req.body.Players
+  if (req.body.PlayerPosition != null) {
+    PlayerPosition = req.body.PlayerPosition
+  }
+  if (req.body.Players != null) {
+    Players = req.body.Players
+  }
+  if (req.body.PlayerChat != null) {
+    PlayerChat = req.body.PlayerChat
+  }
+  if (req.body.OtherChat != null) {
+    OtherChat = req.body.OtherChat
+  }
   res.send("Good")
 });
 
